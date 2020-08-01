@@ -12,6 +12,7 @@ import android.widget.EditText;
 public class SPActivity extends AppCompatActivity {
     private EditText input;
     private SharedPreferences sp;
+    private static String SP_KEY_FOO = "sp_key_foo";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +20,7 @@ public class SPActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sp);
 
         sp = getBaseContext().getSharedPreferences(getString(R.string.sp_id), Context.MODE_PRIVATE);
-        String value = sp.getString("key_foo", "");
+        String value = sp.getString(SP_KEY_FOO, "");
 
         input = findViewById(R.id.sp_key_foo);
         input.setText(value);
@@ -29,7 +30,7 @@ public class SPActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 SharedPreferences.Editor editor = sp.edit();
-                editor.putString("key_foo", input.getText().toString());
+                editor.putString(SP_KEY_FOO, input.getText().toString());
                 editor.commit();
             }
         });
